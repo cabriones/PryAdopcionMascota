@@ -10,6 +10,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -111,22 +113,17 @@ public class Mascota implements Serializable {
 		this.lstcarnetVacunacion = lstcarnetVacunacion;
 	}
 
-	@OneToMany(mappedBy="mascota", fetch=FetchType.LAZY) 
-	private List<Adopcion> lstadopcion;
+	@JoinColumn(name="fk_adopcion", referencedColumnName="pk_adopcion")
+	@ManyToOne
+	private Adopcion adopcion;
 	
-	public List<Adopcion> getLstadopcion() {
-		return lstadopcion;
+	public Adopcion getAdopcion() {
+		return adopcion;
 	}
 
-	public void setLstadopcion(List<Adopcion> lstadopcion) {
-		this.lstadopcion = lstadopcion;
+	public void setAdopcion(Adopcion adopcion) {
+		this.adopcion = adopcion;
 	}
 
-	
-	@Override
-	public String toString() {
-		return this.getNombre()+" "+ this.getTipoMascota();
-	}
-	
 
 }

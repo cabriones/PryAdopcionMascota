@@ -2,6 +2,7 @@ package com.brionesclavijo.mascota.models.entities;
 
 import java.io.Serializable;
 import java.util.Calendar;
+import java.util.List;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -11,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity  
@@ -67,17 +69,17 @@ public class CarnetVacunacion implements Serializable {
 	//Relaciones entre tablas
 	
 	@JoinColumn(name="fk_vacuna", referencedColumnName="pk_vacuna")
-	@ManyToOne
-	private Vacuna vacuna;
-
-	public Vacuna getVacuna() {
+	@OneToMany
+	private List<Vacuna> vacuna;
+	
+	public List<Vacuna> getVacuna() {
 		return vacuna;
 	}
 
-	public void setVacuna(Vacuna vacuna) {
+	public void setVacuna(List<Vacuna> vacuna) {
 		this.vacuna = vacuna;
 	}
-	
+
 	@JoinColumn(name="fk_mascota", referencedColumnName="pk_mascota")
 	@ManyToOne
 	private Mascota mascota;

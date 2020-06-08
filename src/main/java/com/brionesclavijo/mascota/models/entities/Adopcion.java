@@ -2,6 +2,7 @@ package com.brionesclavijo.mascota.models.entities;
 
 import java.io.Serializable;
 import java.util.Calendar;
+import java.util.List;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -11,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -100,17 +102,18 @@ public class Adopcion implements Serializable {
 	//Realacion de tablas
 	
 	@JoinColumn(name="fk_mascota", referencedColumnName="pk_mascota")
-	@ManyToOne
-	private Mascota mascota;
+	@OneToMany
+	private List<Mascota> mascotas;
 
-	public Mascota getMascota() {
-		return mascota;
-	}
-
-	public void setMascota(Mascota mascota) {
-		this.mascota = mascota;
-	}
 	
+	public List<Mascota> getMascotas() {
+		return mascotas;
+	}
+
+	public void setMascotas(List<Mascota> mascotas) {
+		this.mascotas = mascotas;
+	}
+
 	@JoinColumn(name="fk_persona", referencedColumnName="pk_persona")
 	@ManyToOne
 	private Persona persona;

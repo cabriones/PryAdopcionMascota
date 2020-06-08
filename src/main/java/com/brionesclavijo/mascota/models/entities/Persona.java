@@ -112,11 +112,6 @@ public class Persona implements Serializable {
 	public void setLstadopcion(List<Adopcion> lstadopcion) {
 		this.lstadopcion = lstadopcion;
 	}
-
-	@Override
-	public String toString() {
-		return this.getNombre();
-	}
-
+	
 }
 
