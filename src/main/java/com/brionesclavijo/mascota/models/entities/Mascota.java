@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -13,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity  
@@ -103,27 +105,33 @@ public class Mascota implements Serializable {
 	//Relaciones entre tablas
 	
 	@OneToMany(mappedBy="mascota", fetch=FetchType.LAZY) 
-	private List<CarnetVacunacion> lstcarnetVacunacion;
+	private List<CarnetVacunacion> lstcarnet;
 	
-	public List<CarnetVacunacion> getLstcarnetVacunacion() {
-		return lstcarnetVacunacion;
-	}
-
-	public void setLstcarnetVacunacion(List<CarnetVacunacion> lstcarnetVacunacion) {
-		this.lstcarnetVacunacion = lstcarnetVacunacion;
-	}
-
-	@JoinColumn(name="fk_adopcion", referencedColumnName="pk_adopcion")
-	@ManyToOne
-	private Adopcion adopcion;
 	
-	public Adopcion getAdopcion() {
-		return adopcion;
+	public List<CarnetVacunacion> getLstcarnet() {
+		return lstcarnet;
 	}
 
-	public void setAdopcion(Adopcion adopcion) {
-		this.adopcion = adopcion;
+	public void setLstcarnet(List<CarnetVacunacion> lstcarnet) {
+		this.lstcarnet = lstcarnet;
 	}
 
+	@OneToMany(mappedBy="mascota", fetch=FetchType.LAZY) 
+	private List<Adopcion> lstadopcion;
+	
+	
+	public List<Adopcion> getLstadopcion() {
+		return lstadopcion;
+	}
+
+	public void setLstadopcion(List<Adopcion> lstadopcion) {
+		this.lstadopcion = lstadopcion;
+	}
+
+	@Override
+	public String toString() {
+		return this.getNombre()+" "+ this.getTipoMascota();
+	}
+	
 
 }

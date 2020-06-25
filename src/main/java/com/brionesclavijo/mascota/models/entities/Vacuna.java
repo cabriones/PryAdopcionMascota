@@ -66,15 +66,23 @@ public class Vacuna implements Serializable {
 	
 	//Relaciones entre tablas
 	
+
 	@OneToMany(mappedBy="vacuna", fetch=FetchType.LAZY) 
-	private CarnetVacunacion carnetVacunacion;	
-
-	public CarnetVacunacion getCarnetVacunacion() {
-		return carnetVacunacion;
+	private List<CarnetVacunacion> lstcarnet;
+	
+	
+	public List<CarnetVacunacion> getLstcarnet() {
+		return lstcarnet;
 	}
 
-	public void setCarnetVacunacion(CarnetVacunacion carnetVacunacion) {
-		this.carnetVacunacion = carnetVacunacion;
+	public void setLstcarnet(List<CarnetVacunacion> lstcarnet) {
+		this.lstcarnet = lstcarnet;
 	}
+
+	@Override
+	public String toString() {
+		return this.getNombre();
+	}
+
 
 }
